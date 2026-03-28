@@ -1,16 +1,16 @@
 1. head_types
 
-(head_type_id, head_type_name)
+(head_type_id, head_type_name, description, created_at, updated_at)
 
 2. heads
 
-(head_id, head_type_id, head_value)
+(head_id, head_type_id, head_value, created_at, updated_at)
 
 3. Items
-(item_id, item_code, item_name, item_type (fk), unit_id (fk), is_purchasable (boolean), is_manufacturable (boolean), is_sellable (boolean), can_be_used_as_material (boolean), description, created_at, updated_at)
+(item_id, item_code, item_name, item_type (Enum: raw_material, finished_product,semi_finished_product) unit_id (fk to heads), is_purchasable (boolean), is_manufacturable (boolean), is_sellable (boolean), can_be_used_as_material (boolean), description, created_at, updated_at)
 
 4. Persons
-(person_id, person_name, person_type, contact_info, created_at, updated_at)
+(person_id, person_name, person_type (Enum: customer, vendor, contractor, employee), contact_info, status (boolean), created_at, updated_at)
 
 5. production_stages
 
@@ -18,11 +18,11 @@
 
 6. product_stage_map
 
-(map_id, product_id, stage_id, sequence_no, created_at, updated_at)
+(map_id, product_id (fk to items), stage_id (fk to production_stages), sequence_no, created_at, updated_at)
 
 7. stage_materials
 
-(stage_material_id, product_id, stage_id, material_item_id, qty_per_unit, mandatory, created_at, updated_at)
+(stage_material_id, map_id, material_item_id, qty_per_unit, mandatory (boolean), created_at, updated_at)
 
 8. ptc_headers
 
